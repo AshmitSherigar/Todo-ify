@@ -11,35 +11,24 @@ export async function fetchTodo(setTodos) {
 
 
 
-export async function renderTodo(setToastMessage) {
-    fetch("http://localhost:3001/completed", {
-        method: "PUT",
-        body: JSON.stringify({
-            id
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(async (_res) => {
-            setToastMessage("Todo has been marked as completed ! Congrats on completing your task .")
-        });
-
-
-}
-export async function createTodo(setTitle, setDescription, setToastMessage) {
-    fetch("http://localhost:3001/todo", {
+export function createTodo(title, description, setTitle, setDescription, setToastMessage) {
+    return fetch("http://localhost:3001/todo", {
         method: "POST",
-        body: JSON.stringify({
-            title,
-            description,
-        }),
-        headers: {
-            "Content-Type": "application/json",
-        },
+        body: JSON.stringify({ title, description }),
+        headers: { "Content-Type": "application/json" },
     }).then(async (_res) => {
-        setTitle("")
-        setDescription("")
-        setToastMessage({ text: "Your TODO was successfully created and added to the list!", type: "success" });
+        setToastMessage({ text: "Todo created!", type: "success" });
+        setTitle("");
+        setDescription("");
+    });
+}
+
+export function renderTodo(id, setToastMessage) {
+    return fetch("http://localhost:3001/completed", {
+        method: "PUT",
+        body: JSON.stringify({ id }),
+        headers: { "Content-Type": "application/json" },
+    }).then(async (_res) => {
+        setToastMessage("Todo marked as completed!");
     });
 }

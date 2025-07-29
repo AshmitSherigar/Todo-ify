@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import Toast from './ToastNotification';
 import { renderTodo } from "../api/todoAPI";
 
-const RenderTodo = ({ todos }) => {
+const RenderTodo = ({ todos, refreshTodo }) => {
     const [toastMessage, setToastMessage] = useState("")
 
     function onClickHandler(id) {
         setToastMessage("")
 
 
-        renderTodo(setToastMessage)
+        renderTodo(id, setToastMessage)
+            .then(() => refreshTodo())
 
 
     }

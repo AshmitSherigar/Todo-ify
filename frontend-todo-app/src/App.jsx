@@ -6,10 +6,14 @@ import { fetchTodo } from "../src/api/todoAPI";
 const App = () => {
   const [todos, setTodos] = useState([])
 
+  function refreshTodo() {
+    fetchTodo(setTodos)
 
+  }
   useEffect(() => {
 
-    fetchTodo(setTodos)
+    refreshTodo()
+
 
 
   }, [])
@@ -18,9 +22,9 @@ const App = () => {
 
   return (
     <div>
-      <NavigationBar />
-      <CreateTodo />
-      <RenderTodo todos={todos} />
+      <NavigationBar  />
+      <CreateTodo refreshTodo={refreshTodo} />
+      <RenderTodo todos={todos} refreshTodo={refreshTodo} />
     </div>
   )
 }

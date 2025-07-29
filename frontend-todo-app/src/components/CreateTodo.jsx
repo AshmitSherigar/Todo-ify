@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { use } from 'react';
 import { createTodo } from '../api/todoAPI';
 
-const CreateTodo = () => {
+const CreateTodo = ({ refreshTodo }) => {
 
     const maxChar = 50
     const [title, setTitle] = useState("")
@@ -37,15 +37,11 @@ const CreateTodo = () => {
     }, [description])
 
     function onClickHandler() {
-        console.log(title, description);
-
-
         setToastMessage({ text: "", type: "" });
-
-
         setTimeout(() => {
             if (title && description) {
-                createTodo(setTitle, setDescription, setToastMessage)
+                createTodo(title, description, setTitle, setDescription, setToastMessage)
+                    .then(() => refreshTodo())
 
             } else {
                 setToastMessage({ text: "Please make sure both the Title and Description fields are filled before submitting", type: "error" });
