@@ -13,11 +13,8 @@ app.use(cors())
 
 app.post('/todo', async (req, res) => {
     const createPayload = req.body
-    console.log(createPayload);
 
     const parsedPayload = createTodo.safeParse(createPayload)
-    console.log(parsedPayload);
-
     if (!parsedPayload.success) {
         res.status(411).json({ message: "You sent the wrong input" })
         return;

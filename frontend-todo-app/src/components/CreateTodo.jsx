@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { use } from 'react';
 import { createTodo } from '../api/todoAPI';
 
-const CreateTodo = ({ refreshTodo }) => {
+const CreateTodo = ({ refreshTodo , theme }) => {
 
     const maxChar = 50
     const [title, setTitle] = useState("")
@@ -51,8 +51,9 @@ const CreateTodo = ({ refreshTodo }) => {
 
     return (
 
-        <div className='container relative h-[92vh] w-full flex items-center justify-center text-gray-800 bg-slate-100'>
-            <div className='box h-[60vh] w-[45vw] flex items-center justify-center flex-col gap-3 border-2 bg-white border-slate-200'>
+        <div className={`container relative h-[92vh] w-full flex items-center flex-col justify-center ${theme ? "text-slate-50 bg-slate-800" : "text-gray-800 bg-slate-100"}`}>
+            <h1 className="text-4xl font-extrabold mb-2">Welcome to Todo-ify</h1>
+            <div className={`box h-[60vh] w-[45vw] flex items-center justify-center flex-col gap-3 border-2 ${theme ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
 
                 {/* Title */}
                 <div className='relative w-[30vw]'>

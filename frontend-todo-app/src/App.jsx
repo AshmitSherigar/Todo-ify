@@ -6,6 +6,15 @@ import { fetchTodo } from "../src/api/todoAPI";
 const App = () => {
   const [todos, setTodos] = useState([])
 
+  //Navigation Bar
+  const [theme, setTheme] = useState(false)
+  function onThemeHandler() {
+    setTheme(!theme)
+  }
+
+
+
+  //This functions fetches the todos to render on screen and also each time TODO is added or updated
   function refreshTodo() {
     fetchTodo(setTodos)
 
@@ -22,9 +31,9 @@ const App = () => {
 
   return (
     <div>
-      <NavigationBar  />
-      <CreateTodo refreshTodo={refreshTodo} />
-      <RenderTodo todos={todos} refreshTodo={refreshTodo} />
+      <NavigationBar onThemeHandler={onThemeHandler} theme={theme} />
+      <CreateTodo refreshTodo={refreshTodo} theme={theme} />
+      <RenderTodo todos={todos} refreshTodo={refreshTodo} theme={theme} />
     </div>
   )
 }
