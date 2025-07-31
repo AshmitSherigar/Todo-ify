@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { use } from 'react';
 import { createTodo } from '../api/todoAPI';
 
-const CreateTodo = ({ refreshTodo , theme }) => {
+const CreateTodo = ({ refreshTodo, theme }) => {
 
     const maxChar = 50
     const [title, setTitle] = useState("")
@@ -52,25 +52,27 @@ const CreateTodo = ({ refreshTodo , theme }) => {
     return (
 
         <div className={`container relative h-[92vh] w-full flex items-center flex-col justify-center ${theme ? "text-slate-50 bg-slate-800" : "text-gray-800 bg-slate-100"}`}>
-            <h1 className="text-4xl font-extrabold mb-2">Welcome to Todo-ify</h1>
-            <div className={`box h-[60vh] w-[45vw] flex items-center justify-center flex-col gap-3 border-2 ${theme ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
+            <h1 tabIndex={0} className="text-3xl lg:text-4xl font-extrabold mb-2">Welcome to Todo-ify</h1>
+            <div className={`box h-[45vh] w-[80vw] lg:h-[60vh] lg:w-[45vw] flex items-center justify-center flex-col gap-3 border-2 ${theme ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
 
                 {/* Title */}
-                <div className='relative w-[30vw]'>
-                    <label htmlFor="title" className='text-2xl'>Title :</label>
+                <div className='relative w-[70vw] lg:w-[40vw]'>
+                    <label  role='form' aria-describedby='form-heading'  htmlFor="title" className='text-xl lg:text-2xl'>Title :</label>
                     <input
+                        aria-label='Enter a Title'
                         type="text"
                         id='title'
-                        className="h-[6vh] w-[30vw] px-3 border rounded"
+                        className="h-[6vh] w-full px-3 border rounded"
                         value={title}
                         onChange={function (el) { setTitle(el.target.value) }}
                         placeholder='Title' />
                 </div>
                 {/* Description */}
-                <div className="relative w-[30vw]">
-                    <label htmlFor="description" className='text-2xl'>Description :</label>
+                <div className="relative w-[70vw] lg:w-[40vw]">
+                    <label role='form' aria-describedby='form-heading'  htmlFor="description" className='text-xl lg:text-2xl'>Description :</label>
                     <input
                         type="text"
+                        aria-label='Enter a Description'
                         id="description"
                         maxLength={maxChar}
                         value={description}
@@ -78,12 +80,12 @@ const CreateTodo = ({ refreshTodo , theme }) => {
                         placeholder="Description"
                         className="h-[6vh] w-full px-3 pr-16 border rounded"
                     />
-                    <p className={`text-right text-xs ${currentLength == maxChar ? "text-red-500" : "text-gray-500"}  pointer-events-none`}>
+                    <p aria-live='polite' className={`text-right text-xs ${currentLength == maxChar ? "text-red-500" : "text-gray-500"}  pointer-events-none`}>
                         {currentLength} / {maxChar}
                     </p>
                 </div>
 
-                <button onClick={onClickHandler} className='px-10 py-2 rounded bg-blue-400 hover:bg-blue-500 active:scale-95 font-semibold'>Add a Todo</button>
+                <button onClick={onClickHandler} aria-label="Add a new todo" className='px-10 py-2 rounded border bg-blue-400 hover:bg-blue-500 active:scale-95 font-semibold'>Add a Todo</button>
                 {toastMessage.text && <ToastNotification text={toastMessage.text} type={toastMessage.type} />}
 
             </div>

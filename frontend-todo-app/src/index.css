@@ -2,6 +2,7 @@
 
 * {
     box-sizing: border-box;
+    transition: background 0.6s ease;
 
 }
 
@@ -66,4 +67,11 @@ body {
 
 .animate-progress {
     animation: progress 5s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-progress{
+        animation:none !important     /*This reduces the motion for operating system set to reduce motion*/
+    }
+    
 }

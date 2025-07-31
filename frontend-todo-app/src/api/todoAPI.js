@@ -1,7 +1,8 @@
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export async function fetchTodo(setTodos) {
-    fetch("http://localhost:3001/todos")
+    fetch(`${BASE_URL}/todos`)
         .then(async (res) => {
             const json = await res.json()
             setTodos(json.Todos)
@@ -12,7 +13,7 @@ export async function fetchTodo(setTodos) {
 
 
 export function createTodo(title, description, setTitle, setDescription, setToastMessage) {
-    return fetch("http://localhost:3001/todo", {
+    return fetch(`${BASE_URL}/todo`, {
         method: "POST",
         body: JSON.stringify({ title, description }),
         headers: { "Content-Type": "application/json" },
@@ -24,7 +25,7 @@ export function createTodo(title, description, setTitle, setDescription, setToas
 }
 
 export function renderTodo(id, setToastMessage) {
-    return fetch("http://localhost:3001/completed", {
+    return fetch(`${BASE_URL}/completed`, {
         method: "PUT",
         body: JSON.stringify({ id }),
         headers: { "Content-Type": "application/json" },

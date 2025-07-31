@@ -14,11 +14,10 @@ This project contains a simple TODO application.
 - **Backend**: Node.js / Express   
 - **Database**: MongoDB 
 
-### Future Enhancement 
-
-- SignIn / SignUp for Users
-- Adding a Most Popular Todos Tab / Or something interactive
-- Dark Mode
+### Future Enhancement  
+- Dark Mode ✔️
 - TimeStamp Feature
-- Responsive
-- a11y and SEO friendly
+- Responsive ✔️
+- a11y ✔️ and SEO friendly 
+- Offline Mode
+- Smart Filters / toggle for completed /pending
