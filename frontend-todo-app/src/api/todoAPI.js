@@ -7,21 +7,25 @@ export async function fetchTodo(setTodos) {
             const json = await res.json()
             setTodos(json.Todos)
         })
-        .catch(err => console.error("Here is the error : ", err))
+        .catch(err => console.log("Here is the error : ", err))
 }
 
 
 
-export function createTodo(title, description, setTitle, setDescription, setToastMessage) {
+export function createTodo(title, description, dueDate, createdDate, setTitle, setDescription, setToastMessage) {
+    
     return fetch(`${BASE_URL}/todo`, {
         method: "POST",
-        body: JSON.stringify({ title, description }),
+        
+        body: JSON.stringify({ title, description , dueDate ,createdDate }),   // will give 411 error if the body is empty
         headers: { "Content-Type": "application/json" },
     }).then(async (_res) => {
-        setToastMessage({ text: "Todo created!", type: "success" });
+        
+        setToastMessage({ text: "Todo Successfully created!", type: "success" });
         setTitle("");
         setDescription("");
-    });
+        sessionStorage.clear()
+    }).catch(err => console.log("Here is the error : ", err));
 }
 
 export function renderTodo(id, setToastMessage) {
@@ -31,5 +35,7 @@ export function renderTodo(id, setToastMessage) {
         headers: { "Content-Type": "application/json" },
     }).then(async (_res) => {
         setToastMessage("Todo marked as completed!");
-    });
+
+    }).catch(err => console.log("Here is your error : ",err));
+    ;
 }

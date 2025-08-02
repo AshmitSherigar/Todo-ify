@@ -16,7 +16,7 @@ This project contains a simple TODO application.
 
 ### Future Enhancement  
 - Dark Mode ✔️
-- TimeStamp Feature
+- TimeStamp Feature ✔️
 - Responsive ✔️
 - a11y ✔️ and SEO friendly 
 - Offline Mode
